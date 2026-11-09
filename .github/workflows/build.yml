@@ -11,7 +11,9 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y git make ldid rsync libxml2-dev
+          sudo apt-get install -y git make rsync libxml2-dev wget
+          wget https://apt.procurs.us/pool/main/iphoneos-arm64/1800/ldid_2.1.5-procursus7_iphoneos-arm64.deb
+          sudo dpkg -i ldid_2.1.5-procursus7_iphoneos-arm64.deb || true
           sudo ln -s /usr/lib/x86_64-linux-gnu/libtinfo.so.6 /usr/lib/x86_64-linux-gnu/libtinfo.so.5 || true
 
       - name: Install Theos
