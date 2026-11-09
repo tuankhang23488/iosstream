@@ -11,7 +11,7 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y git make rsync libxml2-dev wget
+          sudo apt-get install -y git make rsync libxml2-dev wget unzip
           
       - name: Install Theos
         run: |
@@ -24,6 +24,13 @@ jobs:
           chmod +x ldid_linux_x86_64
           sudo mv ldid_linux_x86_64 /usr/local/bin/ldid
           sudo ln -s /usr/lib/x86_64-linux-gnu/libtinfo.so.6 /usr/lib/x86_64-linux-gnu/libtinfo.so.5 || true
+
+      - name: Install SDK
+        run: |
+          wget https://github.com/theos/sdks/archive/master.zip
+          unzip master.zip
+          mkdir -p $THEOS/sdks
+          mv sdks-master/iPhoneOS15.6.sdk $THEOS/sdks/ || mv sdks-master/iPhoneOS14.5.sdk $THEOS/sdks/
 
       - name: Build Package
         run: |
