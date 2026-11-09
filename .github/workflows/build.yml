@@ -11,12 +11,19 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y git make rsync libxml2-dev wget unzip
+          sudo apt-get install -y git make rsync libxml2-dev wget unzip curl
           
       - name: Install Theos
         run: |
           git clone --recursive https://github.com/theos/theos.git $HOME/theos
           echo "THEOS=$HOME/theos" >> $GITHUB_ENV
+
+      - name: Install Toolchain
+        run: |
+          curl -LO https://github.com/sbingner/llvm-project/releases/download/v10.0.0-1/linux-ios-arm64e-clang-toolchain.tar.lzma
+          mkdir -p $THEOS/toolchain/linux/iphone/
+          tar --lzma -xvf linux-ios-arm64e-clang-toolchain.tar.lzma -C $THEOS/toolchain/linux/iphone/ --strip-components=1
+          rm linux-ios-arm64e-clang-toolchain.tar.lzma
 
       - name: Setup Ldid
         run: |
