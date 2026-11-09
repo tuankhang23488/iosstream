@@ -1,0 +1,8 @@
+Package: com.tuankhang.iosstream
+Name: iosstream
+Version: 0.0.1
+Architecture: iphoneos-arm64
+Description: Stream iPhone screen
+Maintainer: tuankhang
+Author: tuankhang
+Section: Utilities
