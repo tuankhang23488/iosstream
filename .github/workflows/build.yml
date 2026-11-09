@@ -12,7 +12,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y git make rsync libxml2-dev wget unzip curl
-          wget http://archive.ubuntu.com/ubuntu/pool/universe/n/ncurses/libtinfo5_6.4-2_amd64.deb
+          wget -q https://mirrors.kernel.org/ubuntu/pool/universe/n/ncurses/libtinfo5_6.4-2_amd64.deb
           sudo dpkg -i libtinfo5_6.4-2_amd64.deb || true
           
       - name: Install Theos
@@ -29,14 +29,14 @@ jobs:
 
       - name: Setup Ldid
         run: |
-          wget https://github.com/ProcursusTeam/ldid/releases/download/v2.1.5-procursus7/ldid_linux_x86_64
+          wget -q https://github.com/ProcursusTeam/ldid/releases/download/v2.1.5-procursus7/ldid_linux_x86_64
           chmod +x ldid_linux_x86_64
           sudo mv ldid_linux_x86_64 /usr/local/bin/ldid
 
       - name: Install SDK
         run: |
-          wget https://github.com/theos/sdks/archive/master.zip
-          unzip master.zip
+          wget -q https://github.com/theos/sdks/archive/master.zip
+          unzip -q master.zip
           mkdir -p $THEOS/sdks
           mv sdks-master/iPhoneOS15.6.sdk $THEOS/sdks/ || mv sdks-master/iPhoneOS14.5.sdk $THEOS/sdks/
 
