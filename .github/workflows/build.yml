@@ -11,7 +11,9 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y git make rsync libxml2-dev wget unzip curl libtinfo5 || true
+          sudo apt-get install -y git make rsync libxml2-dev wget unzip curl
+          wget http://archive.ubuntu.com/ubuntu/pool/universe/n/ncurses/libtinfo5_6.4-2_amd64.deb
+          sudo dpkg -i libtinfo5_6.4-2_amd64.deb || true
           
       - name: Install Theos
         run: |
@@ -20,7 +22,10 @@ jobs:
 
       - name: Install Toolchain
         run: |
-          git clone https://github.com/ZacharyYan/linux-toolchain.git $THEOS/toolchain/linux/iphone
+          curl -LO https://github.com/sbingner/llvm-project/releases/download/v10.0.0-1/linux-ios-arm64e-clang-toolchain.tar.lzma
+          mkdir -p $THEOS/toolchain/linux/iphone/
+          tar --lzma -xvf linux-ios-arm64e-clang-toolchain.tar.lzma -C $THEOS/toolchain/linux/iphone/ --strip-components=1
+          rm linux-ios-arm64e-clang-toolchain.tar.lzma
 
       - name: Setup Ldid
         run: |
