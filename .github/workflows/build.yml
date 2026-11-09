@@ -11,7 +11,8 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y git make ldid rsync libxml2-dev libtinfo5 || sudo apt-get install -y git make ldid rsync libxml2-dev libtinfo6
+          sudo apt-get install -y git make ldid rsync libxml2-dev
+          sudo ln -s /usr/lib/x86_64-linux-gnu/libtinfo.so.6 /usr/lib/x86_64-linux-gnu/libtinfo.so.5 || true
 
       - name: Install Theos
         run: |
