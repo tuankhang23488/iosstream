@@ -4,16 +4,14 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
 
       - name: Install Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y git make rsync libxml2-dev wget unzip curl
-          wget -q https://mirrors.kernel.org/ubuntu/pool/universe/n/ncurses/libtinfo5_6.4-2_amd64.deb
-          sudo dpkg -i libtinfo5_6.4-2_amd64.deb || true
+          sudo apt-get install -y git make rsync libxml2-dev wget unzip curl libtinfo5
           
       - name: Install Theos
         run: |
