@@ -36,7 +36,7 @@ jobs:
           wget -q https://github.com/theos/sdks/archive/master.zip
           unzip -q master.zip
           mkdir -p $THEOS/sdks
-          mv sdks-master/iPhoneOS15.6.sdk $THEOS/sdks/ || mv sdks-master/iPhoneOS14.5.sdk $THEOS/sdks/
+          mv sdks-master/iPhoneOS14.5.sdk $THEOS/sdks/ || mv sdks-master/iPhoneOS13.7.sdk $THEOS/sdks/
 
       - name: Build Package
         run: |
